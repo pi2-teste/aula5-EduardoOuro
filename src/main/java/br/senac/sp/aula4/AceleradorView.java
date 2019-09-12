@@ -39,22 +39,151 @@ public class AceleradorView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        velocimetro = new javax.swing.JLabel();
+        Acelerar = new javax.swing.JButton();
+        frear = new javax.swing.JButton();
+        campoAcelerar = new javax.swing.JTextField();
+        campoFrear = new javax.swing.JFormattedTextField();
+        lblVelocidadeAtual = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Piloto Automático");
+
+        velocimetro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/velocidade.png"))); // NOI18N
+        velocimetro.setText("VELOCIMETRO");
+
+        Acelerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seta-cima.png"))); // NOI18N
+        Acelerar.setText("Acelerar");
+        Acelerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcelerarActionPerformed(evt);
+            }
+        });
+
+        frear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/seta-baixo.png"))); // NOI18N
+        frear.setText("Frear");
+        frear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frearActionPerformed(evt);
+            }
+        });
+
+        campoAcelerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoAcelerarActionPerformed(evt);
+            }
+        });
+
+        campoFrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoFrearActionPerformed(evt);
+            }
+        });
+
+        lblVelocidadeAtual.setFont(new java.awt.Font("Niagara Solid", 1, 48)); // NOI18N
+        lblVelocidadeAtual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVelocidadeAtual.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(velocimetro))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lblVelocidadeAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(frear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Acelerar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(campoAcelerar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoFrear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(velocimetro)
+                    .addComponent(Acelerar)
+                    .addComponent(campoAcelerar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(lblVelocidadeAtual))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(frear)
+                            .addComponent(campoFrear, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcelerarActionPerformed
+        // TODO add your handling code here:
+        
+        Integer a;// criar variavel int parar chamar a VelocidadeAtual
+        Integer numAcelerar;
+        String strAcelerar;
+        if(campoAcelerar.getText().trim().equals(""))   // campo ao lado do botao acelerar em branco
+        meuCarro.acelelar();
+        
+        else{
+        strAcelerar = campoAcelerar.getText();
+        numAcelerar =Integer.parseInt(strAcelerar);
+        meuCarro.acelelar(numAcelerar);  // chamando a função acelerar da Classe Carro
+        }
+        a = meuCarro.getVelocidadeAtual(); //para imprimir a velocidade atual
+        lblVelocidadeAtual.setText(a.toString());
+        System.out.println(" texto caixa branca "+campoAcelerar.getText());
+        
+         System.out.println("velocidadeAtual: "+a+" Km/h");//imprimindo o funcionamento do programa
+        
+        
+    }//GEN-LAST:event_AcelerarActionPerformed
+
+    private void frearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frearActionPerformed
+        // TODO add your handling code here:
+        Integer a;
+        Integer numFrear;
+        String strFrear;
+        
+        if(campoFrear.getText().trim().equals(""))
+        meuCarro.frear();    
+        else{
+            strFrear= campoFrear.getText();
+            numFrear = Integer.parseInt(strFrear);
+            meuCarro.frear(numFrear); 
+        }
+        a=meuCarro.getVelocidadeAtual();
+        lblVelocidadeAtual.setText(a.toString());
+        System.out.println(" texto caixa branca do Freio "+campoFrear.getText());
+        System.out.println("velocidadeAtual: "+a+" Km/h");
+        
+        
+        
+        
+    }//GEN-LAST:event_frearActionPerformed
+
+    private void campoAcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAcelerarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_campoAcelerarActionPerformed
+
+    private void campoFrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFrearActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_campoFrearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,5 +225,11 @@ public class AceleradorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Acelerar;
+    private javax.swing.JTextField campoAcelerar;
+    private javax.swing.JFormattedTextField campoFrear;
+    private javax.swing.JButton frear;
+    private javax.swing.JLabel lblVelocidadeAtual;
+    private javax.swing.JLabel velocimetro;
     // End of variables declaration//GEN-END:variables
 }
